@@ -20,13 +20,13 @@ export const ResultComponent = ({servedData}) =>(
                       </Col>
                     </Row>
 
-                    <Row className="mt-2 ml-2">
+                    <Row className="mt-2">
                       <Col>
                         <strong style={{ color: "#5353da" }}>{`${elements.mission_name} #${elements.flight_number}`}</strong>
                       </Col>
                     </Row>
 
-                    <Row className="mt-2 ml-2">
+                    <Row className="mt-2">
                       <Col>
                         <strong>Mission Ids:</strong>
                         <ul>
@@ -37,7 +37,7 @@ export const ResultComponent = ({servedData}) =>(
                       </Col>
                     </Row>
 
-                    <Row className="mt-2 ml-2">
+                    <Row className="mt-2">
                       <Col>
                         <strong>Launch Year:</strong>
                         {` ${elements.launch_year}`}
@@ -45,7 +45,7 @@ export const ResultComponent = ({servedData}) =>(
                     </Row>
 
 
-                    <Row className="mt-2 ml-2">
+                    <Row className="mt-2">
                       <Col>
 
                         <strong>Sucessfull Launch:</strong>
@@ -54,7 +54,7 @@ export const ResultComponent = ({servedData}) =>(
                       </Col>
                     </Row>
 
-                    <Row className="mt-2 ml-2">
+                    <Row className="mt-2">
                       <Col>
                         <strong>Sucessfull Landings :</strong>
                         {` ${elements.rocket.first_stage.cores[0].land_success}`}

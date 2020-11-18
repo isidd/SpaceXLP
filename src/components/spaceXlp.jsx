@@ -70,7 +70,7 @@ export default function SpaceXlp(props) {
       <CardHeader>
         <Row>
           <Col>
-            <strong> SpaceX Launch Programs</strong>
+            <strong> SpaceX Launch Programs1</strong>
           </Col>
         </Row>
 
