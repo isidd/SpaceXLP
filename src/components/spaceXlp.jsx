@@ -26,6 +26,10 @@ export default function SpaceXlp(props) {
   const setYearHandler = (year) => {
     setQueryYear(year)
     let url = `&launch_year=${year}`;
+    setLaunchQuery('');
+    setLaunch('')
+    setLand('')
+    setLandQuery('')
     setYearQuery(url)
   }
 
