@@ -23,13 +23,12 @@ export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,ge
             </Row>
 
             <Row >
+                {/* Componenet Responsible for showing Filter Parameters (Year) */}
                 {JSON.parse(years).map((year) => {
-                    return (<QueryComponenet setHandler={setYearHandler} value={year} cond={queryYear} />)
+                    return (<QueryComponenet key={year} setHandler={setYearHandler} value={year} cond={queryYear} />)
 
                 })}
             </Row>
-
-
 
             <Row className="mt-4">
                 <Col className="text-center">
@@ -38,11 +37,11 @@ export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,ge
                 </Col>
             </Row>
             <Row>
-                {JSON.parse(boolValue).map((boolValue) => {
-                    return <QueryComponenet setHandler={setLaunchHandler} value={boolValue.toString()} cond={getlaunch} />
+                {/* Componenet Responsible for showing Filter Parameters (Launch) */}
+                {JSON.parse(boolValue).map((boolValue,index) => {
+                    return <QueryComponenet key={index} setHandler={setLaunchHandler} value={boolValue.toString()} cond={getlaunch} />
                 })}
             </Row>
-
 
             <Row className="mt-4">
                 <Col className="text-center">
@@ -53,8 +52,9 @@ export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,ge
             </Row>
 
             <Row className="mb-3">
-                {JSON.parse(boolValue).map((boolValue) => {
-                    return <QueryComponenet setHandler={setLandHandler} value={boolValue.toString()} cond={getLand} />
+                {/* Componenet Responsible for showing Filter Parameters (Land) */}
+                {JSON.parse(boolValue).map((boolValue,index) => {
+                    return <QueryComponenet key={index} setHandler={setLandHandler} value={boolValue.toString()} cond={getLand} />
                 })}
             </Row>
 

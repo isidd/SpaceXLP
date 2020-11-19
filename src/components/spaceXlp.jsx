@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, CardBody, CardHeader, CardImg } from 'reactstrap'
+import { Card, Row, Col, CardHeader } from 'reactstrap'
 import { ParameterComponent } from './parameterComponenet'
 import { ResultComponent } from './resultComponenet'
 
@@ -8,6 +8,7 @@ import { ResultComponent } from './resultComponenet'
 export default function SpaceXlp(props) {
 
 
+// Setting initial State
 
   const [spaceXlpData, setSpaceXlpData] = useState([])
   const [servedData, setServedData] = useState([])
@@ -21,20 +22,21 @@ export default function SpaceXlp(props) {
   const [getLand, setLand] = useState('')
 
 
+  // Handle for chaning Year events
   const setYearHandler = (year) => {
-
     setQueryYear(year)
     let url = `&launch_year=${year}`;
     setYearQuery(url)
   }
 
+  // Handle for chaning Launch events
   const setLaunchHandler = (value) => {
     setLaunch(value)
     let url = `&launch_success=${value}`;
     setLaunchQuery(url);
   }
 
-
+  // Handle for chaning Land events
   const setLandHandler = (value) => {
     setLand(value)
     let url = `&land_success=${value}`;
@@ -43,15 +45,14 @@ export default function SpaceXlp(props) {
 
 
 
+  // First time on page
   useEffect(() => {
-    props._onPageData(page)
+    props._onPageData(page) // all launch data fetching
   }, [])
 
-  useEffect(() => {
-    let servData = [...spaceXlpData]
-    setServedData(servData.sort((a, b) => a.flight_number > b.flight_number).slice(8 * (page), 8 * (page + 1)))
-  }, [page])
 
+
+  // Setting pagination for initial case
   useEffect(() => {
     setSpaceXlpData(props.state.user.data)
     let servData = [...props.state.user.data]
@@ -59,8 +60,18 @@ export default function SpaceXlp(props) {
   }, [props.state.user.data])
 
 
+  // setting resutls after page change 
+  useEffect(() => {
+    let servData = [...spaceXlpData]
+    // 8 results for pages depending on which page
+    setServedData(servData.sort((a, b) => a.flight_number > b.flight_number).slice(8 * (page), 8 * (page + 1)))
+  }, [page])
+
+
+  // Handling change on query parameters
   useEffect(() => {
     let finalQuery = ''.concat(getYearQuery).concat(getLaunchQuery).concat(getLandQuery)
+    // Hitting API for query
     props._onPageData(finalQuery)
   }, [getYearQuery, getLandQuery, getLaunchQuery])
 
@@ -75,7 +86,10 @@ export default function SpaceXlp(props) {
         </Row>
 
         <Row className="mt-3">
+
           <Col md={2}>
+            {/* Parameter Component responsible for showing Year 
+                    Launch Land parameter */}
             <ParameterComponent
               setYearHandler={setYearHandler}
               setQueryYear={setQueryYear}
@@ -86,7 +100,10 @@ export default function SpaceXlp(props) {
               getLand={getLand}
             />
           </Col>
+
           <Col md={9}>
+            {/* Result Componenet responsible for 
+                  showing results coming after hitting API */}
             {!props.state.user.isLoading ?
               <ResultComponent
                 servedData={servedData} />
@@ -94,15 +111,17 @@ export default function SpaceXlp(props) {
               <>Loading...</>
             }
           </Col>
+
         </Row>
 
+        {/* Pagination */}
         {spaceXlpData.length > 8 && <Row>
           <Col className="text-right">
-            {page > 0 ? <span style={{ cursor: "pointer" }} onClick={() => setPage(page - 1)}> {"Prev"}</span> : <span style={{ cursor: "pointer",color:'grey' }} > {"Prev"}</span>}
+            {page > 0 ? <span style={{ cursor: "pointer" }} onClick={() => setPage(page - 1)}> {"Prev"}</span> : <span style={{ cursor: "pointer", color: 'grey' }} > {"Prev"}</span>}
           </Col>
           |
           <Col className="text-left">
-            {page < (spaceXlpData.length/8)-1 ? <span style={{ cursor: "pointer" }} onClick={() => setPage(page + 1)}> {"Next"}</span> : <span style={{ cursor: "pointer",color:"grey" }}> {"Next"}</span>}
+            {page < (spaceXlpData.length / 8) - 1 ? <span style={{ cursor: "pointer" }} onClick={() => setPage(page + 1)}> {"Next"}</span> : <span style={{ cursor: "pointer", color: "grey" }}> {"Next"}</span>}
 
           </Col>
         </Row>}

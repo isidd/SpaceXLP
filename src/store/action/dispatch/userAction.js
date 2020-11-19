@@ -15,7 +15,6 @@ export function NetworkRequest() {
 
 
 export function ResponseSuccess(data) {
-    console.log(data)
     return {
         type: ON_PAGE_SUCCESS,
         value: data
@@ -37,7 +36,6 @@ export function onPageData(url) {
     return dispatch => {
         dispatch(NetworkRequest());
         return on_page_data(url).then((res) => {
-            console.log(res)
             if (res.status === 200) {
                 let { data } = res;
                 if (data) return dispatch(ResponseSuccess(data));

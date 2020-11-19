@@ -1,6 +1,10 @@
-import React from 'react' ;
-import {Col} from 'reactstrap'
+import React from 'react';
+import { Col } from 'reactstrap'
 
 export const QueryComponenet = ({ value, setHandler, cond }) => (
-      <Col className="mt-3 text-center" xl={6} lg={6} md={6} sm={6} xs={6}><button onClick={() => { setHandler(value) }} style={{ width: "100%", borderRadius: "5px", backgroundColor: !(cond == value) ? "#c1efc1" : "rgb(78 144 78)", border: "1px" }}>{value.toString()}</button></Col>
-  )
+    <Col className="mt-3 text-center" xl={6} lg={6} md={6} sm={6} xs={6}>
+        <button onClick={() => { setHandler(value) }} style={{ width: "100%", borderRadius: "5px", backgroundColor: !(cond == value) ? "#c1efc1" : "rgb(78 144 78)", border: "1px" }}>
+            {value.toString()}
+        </button>
+    </Col>
+)
