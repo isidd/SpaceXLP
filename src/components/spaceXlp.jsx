@@ -124,7 +124,7 @@ export default function SpaceXlp(props) {
             />
           </Col>
 
-          <Col md={9}>
+          <Col md={10}>
             {/* Result Componenet responsible for 
                   showing results coming after hitting API */}
             {!props.state.user.isLoading ?

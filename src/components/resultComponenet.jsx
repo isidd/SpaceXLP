@@ -1,16 +1,18 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, CardImg, Row, Col , Container } from 'reactstrap'
+import './../App.css'
+
 
 export const ResultComponent = ({ servedData }) => (
 
 
   
   <Container>
-    <Row >
+    <Row className={"col-two"} >
       {servedData.length > 0 ?
         servedData.map((elements) => {
           return (
-            <Col key={elements.flight_number} md={6} sm={12} lg={3} xl={3} className="mb-3" >
+            <Col   key={elements.flight_number} md={6} lg={3}  className="mb-3" >
               <Card>
                 <CardBody >
                   <Row>
