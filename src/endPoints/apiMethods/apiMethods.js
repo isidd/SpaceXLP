@@ -10,10 +10,5 @@ export async function wrappedFetch(input, method, body, headers) {
     return await axios(config)
   }
   
-  export async function wrappedGet(resource, method) {
-    return await axios({
-      method: method,
-      url: resource
-    })
-  }
+
   

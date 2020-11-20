@@ -6,7 +6,7 @@ import {years,boolValue} from './../helper/parameter.json'
 
 
 
-export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,getlaunch,setLandHandler,getLand}) => (
+export const ParameterComponent = ({setYearHandler,setLaunchHandler,setLandHandler,cond}) => (
     <Card>
         <CardBody>
             <Row>
@@ -25,7 +25,7 @@ export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,ge
             <Row >
                 {/* Componenet Responsible for showing Filter Parameters (Year) */}
                 {JSON.parse(years).map((year) => {
-                    return (<QueryComponenet key={year} setHandler={setYearHandler} value={year} cond={queryYear} />)
+                    return (<QueryComponenet key={year} setHandler={setYearHandler}  value={year} qry={'launch_year'} cond={cond} />)
 
                 })}
             </Row>
@@ -39,7 +39,7 @@ export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,ge
             <Row>
                 {/* Componenet Responsible for showing Filter Parameters (Launch) */}
                 {JSON.parse(boolValue).map((boolValue,index) => {
-                    return <QueryComponenet key={index} setHandler={setLaunchHandler} value={boolValue.toString()} cond={getlaunch} />
+                    return <QueryComponenet key={index} setHandler={setLaunchHandler}  value={boolValue.toString()} qry={'launch_success'} cond={cond} />
                 })}
             </Row>
 
@@ -54,7 +54,7 @@ export const ParameterComponent = ({setYearHandler,queryYear,setLaunchHandler,ge
             <Row className="mb-3">
                 {/* Componenet Responsible for showing Filter Parameters (Land) */}
                 {JSON.parse(boolValue).map((boolValue,index) => {
-                    return <QueryComponenet key={index} setHandler={setLandHandler} value={boolValue.toString()} cond={getLand} />
+                    return <QueryComponenet key={index} setHandler={setLandHandler} value={boolValue.toString()}   qry={'land_success'} cond={cond}/>
                 })}
             </Row>
 

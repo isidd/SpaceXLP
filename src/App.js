@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { Switch, Redirect, withRouter } from "react-router-dom";
-import { Container, Col, Row } from 'reactstrap'
+import { Switch } from "react-router-dom";
 import RouteWithSubRoutes from "./helper/subRoteHelper";
 import routes from "./config/routesConfig";
 

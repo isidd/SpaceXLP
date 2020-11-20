@@ -10,7 +10,7 @@ export const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    _onPageData : (url)=> dispatch(onPageData(url))
+    _onPageData : (query)=> dispatch(onPageData(query))
   }
 };
 

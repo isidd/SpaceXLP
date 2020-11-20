@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
-import { Route, Redirect } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Route } from "react-router-dom";
 import ErrrorBoundary from './../helper/errorBoundary'
 
 let RouteWithSubRoutes = (route) => {

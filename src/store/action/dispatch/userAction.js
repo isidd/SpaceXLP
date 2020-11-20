@@ -32,10 +32,10 @@ export function LoginError(errMsg) {
 
 
 
-export function onPageData(url) {
+export function onPageData(query) {
     return dispatch => {
         dispatch(NetworkRequest());
-        return on_page_data(url).then((res) => {
+        return on_page_data(query).then((res) => {
             if (res.status === 200) {
                 let { data } = res;
                 if (data) return dispatch(ResponseSuccess(data));

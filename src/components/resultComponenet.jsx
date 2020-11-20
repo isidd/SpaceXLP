@@ -8,7 +8,7 @@ export const ResultComponent = ({ servedData }) => (
       {servedData.length > 0 ?
         servedData.map((elements) => {
           return (
-            <Col key={elements.flight_number} md={3} className="mb-3">
+            <Col key={elements.flight_number} md={6} sm={12} lg={3} xl={3} className="mb-3">
               <Card>
                 <CardBody >
                   <Row>
@@ -20,8 +20,8 @@ export const ResultComponent = ({ servedData }) => (
                     </Col>
                   </Row>
 
-                  <Row className="mt-2">
-                    <Col>
+                  <Row  className="mt-2">
+                    <Col sm={12} xs={12} lg={12} md={12} >
                       <strong style={{ color: "#5353da" }}>{`${elements.mission_name} #${elements.flight_number}`}</strong>
                     </Col>
                   </Row>
@@ -31,7 +31,7 @@ export const ResultComponent = ({ servedData }) => (
                       <strong>Mission Ids:</strong>
                       <ul>
                         <li>
-                          {elements.mission_id.length > 0 && elements.mission_id[0] || ' Dummy Id'}
+                          {elements.mission_id.length > 0 && (elements.mission_id[0] || ' Dummy Id')}
                         </li>
                       </ul>
                     </Col>

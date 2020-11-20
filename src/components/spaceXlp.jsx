@@ -2,57 +2,86 @@ import React, { useState, useEffect } from "react";
 import { Card, Row, Col, CardHeader } from 'reactstrap'
 import { ParameterComponent } from './parameterComponenet'
 import { ResultComponent } from './resultComponenet'
+import {CreateQueryString , DeleteQueryString , ReplaceQueryString} from './../utilities/quesryHandler'
+
+import { useLocation } from "react-router";
+import queryString from 'query-string'
 
 
 
 export default function SpaceXlp(props) {
 
+  const loc = useLocation()
+  const values = queryString.parse(props.location.search)
 
-// Setting initial State
+  // Setting initial State
 
   const [spaceXlpData, setSpaceXlpData] = useState([])
   const [servedData, setServedData] = useState([])
   const [page, setPage] = useState(0)
 
-  const [getYearQuery, setYearQuery] = useState('')
-  const [queryYear, setQueryYear] = useState('')
-  const [getLaunchQuery, setLaunchQuery] = useState('')
-  const [getlaunch, setLaunch] = useState('')
-  const [getLandQuery, setLandQuery] = useState('')
-  const [getLand, setLand] = useState('')
+
+
 
 
   // Handle for chaning Year events
   const setYearHandler = (year) => {
-    setQueryYear(year)
-    let url = `&launch_year=${year}`;
-    setLaunchQuery('');
-    setLaunch('')
-    setLand('')
-    setLandQuery('')
-    setYearQuery(url)
+    let url;
+    if (loc.search.includes('launch_year')) {
+      if (values['launch_year'] == year) {
+        url = DeleteQueryString('launch_year',loc)
+      } else {
+        url = ReplaceQueryString('launch_year', year,values)
+      }
+    } else {
+      url = CreateQueryString('launch_year', year , loc)
+    }
+    props.history.push(url)
   }
 
   // Handle for chaning Launch events
   const setLaunchHandler = (value) => {
-    setLaunch(value)
-    let url = `&launch_success=${value}`;
-    setLaunchQuery(url);
+    let url;
+    if (loc.search.includes('launch_success')) {
+      if (values['launch_success'] == value) {
+        url = DeleteQueryString('launch_success',loc)
+      } else {
+        url = ReplaceQueryString('launch_success', value , values)
+      }
+    } else {
+      url = CreateQueryString('launch_success', value,loc)
+    }
+    props.history.push(url)
   }
 
   // Handle for chaning Land events
   const setLandHandler = (value) => {
-    setLand(value)
-    let url = `&land_success=${value}`;
-    setLandQuery(url)
+    let url;
+    if (loc.search.includes('land_success')) {
+      if (values['land_success'] == value) {
+        url = DeleteQueryString('land_success',loc)
+      } else {
+        url = ReplaceQueryString('land_success', value,values)
+      }
+    } else {
+      url = CreateQueryString('land_success', value,loc)
+    }
+    props.history.push(url)
   }
 
 
 
   // First time on page
   useEffect(() => {
-    props._onPageData(page) // all launch data fetching
+    props._onPageData(loc.search) // all launch data fetching
   }, [])
+
+
+  useEffect(() => {
+    // On Parameter change
+    props._onPageData(loc.search)
+  }, [loc.search])
+
 
 
 
@@ -72,13 +101,6 @@ export default function SpaceXlp(props) {
   }, [page])
 
 
-  // Handling change on query parameters
-  useEffect(() => {
-    let finalQuery = ''.concat(getYearQuery).concat(getLaunchQuery).concat(getLandQuery)
-    // Hitting API for query
-    props._onPageData(finalQuery)
-  }, [getYearQuery, getLandQuery, getLaunchQuery])
-
 
   return (
     <Card >
@@ -96,12 +118,9 @@ export default function SpaceXlp(props) {
                     Launch Land parameter */}
             <ParameterComponent
               setYearHandler={setYearHandler}
-              setQueryYear={setQueryYear}
-              queryYear={queryYear}
               setLaunchHandler={setLaunchHandler}
-              getlaunch={getlaunch}
               setLandHandler={setLandHandler}
-              getLand={getLand}
+              cond = {values}
             />
           </Col>
 
@@ -118,7 +137,7 @@ export default function SpaceXlp(props) {
 
         </Row>
 
-        {/* Pagination */}
+        {/* Pagination View */}
         {spaceXlpData.length > 8 && <Row>
           <Col className="text-right">
             {page > 0 ? <span style={{ cursor: "pointer" }} onClick={() => setPage(page - 1)}> {"Prev"}</span> : <span style={{ cursor: "pointer", color: 'grey' }} > {"Prev"}</span>}
@@ -129,6 +148,12 @@ export default function SpaceXlp(props) {
 
           </Col>
         </Row>}
+
+        <Row className="mt-4">
+          <Col className="text-center">
+            <strong>Developed By : Siddhartha Pharasi </strong>
+          </Col>
+        </Row>
 
       </CardHeader>
     </Card>
