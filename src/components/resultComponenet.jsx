@@ -1,14 +1,15 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, CardImg, Row, Col , Container } from 'reactstrap'
 
-
 export const ResultComponent = ({ servedData }) => (
-  <>
-    <Row>
+
+
+  
+  <Container>
+    <Row >
       {servedData.length > 0 ?
         servedData.map((elements) => {
           return (
-            <Container >
             <Col key={elements.flight_number} md={6} sm={12} lg={3} xl={3} className="mb-3" >
               <Card>
                 <CardBody >
@@ -23,7 +24,7 @@ export const ResultComponent = ({ servedData }) => (
 
                   <Row  className="mt-2">
                     <Col sm={12} xs={12} lg={12} md={12} >
-                      <strong style={{ color: "#5353da" }}>{`${elements.mission_name} #${elements.flight_number}`}</strong>
+                      <strong  style={{ color: "#5353da" }}>{`${elements.mission_name} #${elements.flight_number}`}</strong>
                     </Col>
                   </Row>
 
@@ -65,7 +66,6 @@ export const ResultComponent = ({ servedData }) => (
                 </CardBody>
               </Card>
             </Col>
-      </Container>
           )
         }) :
         <Col md={9}>No Data.. </Col>
@@ -73,5 +73,5 @@ export const ResultComponent = ({ servedData }) => (
 
     </Row>
 
-</>
+</Container>
 )
