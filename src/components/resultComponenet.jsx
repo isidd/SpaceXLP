@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardHeader, CardImg, Row, Col } from 'reactstrap'
+import { Card, CardBody, CardHeader, CardImg, Row, Col , Container } from 'reactstrap'
 
 
 export const ResultComponent = ({ servedData }) => (
@@ -8,7 +8,8 @@ export const ResultComponent = ({ servedData }) => (
       {servedData.length > 0 ?
         servedData.map((elements) => {
           return (
-            <Col key={elements.flight_number} md={6} sm={12} lg={3} xl={3} className="mb-3">
+            <Container >
+            <Col key={elements.flight_number} md={6} sm={12} lg={3} xl={3} className="mb-3" >
               <Card>
                 <CardBody >
                   <Row>
@@ -64,6 +65,7 @@ export const ResultComponent = ({ servedData }) => (
                 </CardBody>
               </Card>
             </Col>
+      </Container>
           )
         }) :
         <Col md={9}>No Data.. </Col>
@@ -71,5 +73,5 @@ export const ResultComponent = ({ servedData }) => (
 
     </Row>
 
-  </>
+</>
 )
