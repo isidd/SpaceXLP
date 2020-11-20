@@ -2,12 +2,12 @@ import React from 'react'
 import {Row,Col,Card,CardBody} from 'reactstrap'
 import {QueryComponenet} from './../utilities/quesryComponenet'
 import {years,boolValue} from './../helper/parameter.json'
-
+import './../App.css'
 
 
 
 export const ParameterComponent = ({setYearHandler,setLaunchHandler,setLandHandler,cond}) => (
-    <Card>
+    <Card className={"col-two"} className="mb-4">
         <CardBody>
             <Row>
                 <Col >

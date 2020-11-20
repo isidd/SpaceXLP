@@ -7,18 +7,17 @@ export const ResultComponent = ({ servedData }) => (
 
 
   
-  <Container>
+  <Container className="p-0">
     <Row className={"col-two"} >
       {servedData.length > 0 ?
         servedData.map((elements) => {
           return (
             <Col   key={elements.flight_number} md={6} lg={3}  className="mb-3" >
-              <Card>
+              <Card style={{height:"100%"}}>
                 <CardBody >
                   <Row>
-                    <Col md={1}></Col>
-                    <Col md={10}>
-                      <CardHeader>
+                    <Col md={12}>
+                      <CardHeader className="m-2">
                         <CardImg src={elements.links.mission_patch_small} />
                       </CardHeader>
                     </Col>

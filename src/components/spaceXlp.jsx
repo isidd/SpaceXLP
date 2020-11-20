@@ -7,7 +7,7 @@ import {CreateQueryString , DeleteQueryString , ReplaceQueryString} from './../u
 import { useLocation } from "react-router";
 import queryString from 'query-string'
 
-
+import './../App.css'
 
 export default function SpaceXlp(props) {
 
@@ -110,10 +110,10 @@ export default function SpaceXlp(props) {
             <strong> SpaceX Launch Programs</strong>
           </Col>
         </Row>
+      
+        <Row  className="mt-3">
 
-        <Row className="mt-3">
-
-          <Col md={2}>
+          <Col md={3} lg={2}>
             {/* Parameter Component responsible for showing Year 
                     Launch Land parameter */}
             <ParameterComponent
@@ -124,7 +124,7 @@ export default function SpaceXlp(props) {
             />
           </Col>
 
-          <Col md={10}>
+          <Col md={9} lg={10}>
             {/* Result Componenet responsible for 
                   showing results coming after hitting API */}
             {!props.state.user.isLoading ?
